@@ -12,7 +12,7 @@ class thnxblogMainModuleFrontController extends ModuleFrontController
 	}
 	public function init()
 	{
-		$this->page_type = Tools::getValue('page_type');
+		$this->page_type = $this->getPageType();
 		$post_per_page = (int)Configuration::get(thnxblog::$thnxblogshortname."post_per_page");
 		$this->n = (isset($post_per_page) && !empty($post_per_page)) ? $post_per_page : 12;
 		if (self::$initialized) {
@@ -63,6 +63,32 @@ class thnxblogMainModuleFrontController extends ModuleFrontController
 	        return _PS_MODULE_DIR_.thnxblog::$ModuleName.'/views/templates/front/'.$template;
 	    }
 	    return false;
+	}
+	public function getPageType(){
+		$page_name = $this->context->controller->page_name;
+		if(empty($page_name)){
+			$page_type = 'category';
+		}elseif(in_array($page_name,array('module-thnxblog-archive','thnxblog-thnxblog-module','thnxblog-archive-module','thnxblog-archive-aftrid-module','thnxblog-archive-wid-module'))){
+			$page_type = 'category';
+		}elseif(in_array($page_name, array('thnxblog-tag-module','thnxblog-tag-aftrid-module','thnxblog-tag-wid-module'))){
+			$page_type = 'tag';
+		}elseif(in_array($page_name, array('module-thnxblog-single','thnxblog-single-module','thnxblog-single-aftrid-module','thnxblog-single-wid-module'))){
+			$page_type = 'post';
+		}else{
+			$page_type = 'category';
+		}
+		return $page_type;
+	}
+	public function getSubPageType(){
+		$page_name = $this->context->controller->page_name;
+		if(empty($page_name)){
+			$sub_page_type = '';
+		}elseif(in_array($page_name,array('thnxblog-thnxblog-module','thnxblog-archive-module','thnxblog-archive-aftrid-module','thnxblog-archive-wid-module','thnxblog-tag-module','thnxblog-tag-aftrid-module','thnxblog-tag-wid-module'))){
+			$sub_page_type = 'post';
+		}else{
+			$sub_page_type = '';
+		}
+		return $sub_page_type;
 	}
 	public function pagination($total_products = null)
 	{
