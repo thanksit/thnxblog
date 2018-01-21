@@ -70,9 +70,9 @@ class thnxblogSingleModuleFrontController extends thnxblogMainModuleFrontControl
 
         $this->context->smarty->assign('thnxblog_dir',_PS_MODULE_DIR_.thnxblog::$ModuleName);
         $this->context->smarty->assign('thnxblog_uri',__PS_BASE_URI__.thnxblog::$ModuleName);
-        $this->context->smarty->assign('thnxblog_img_uri',__PS_BASE_URI__.thnxblog::$ModuleName.'/img/');
-        $this->context->smarty->assign('thnxblog_css_uri',__PS_BASE_URI__.thnxblog::$ModuleName.'/css/');
-        $this->context->smarty->assign('thnxblog_js_uri',__PS_BASE_URI__.thnxblog::$ModuleName.'/js/');
+        $this->context->smarty->assign('thnxblog_img_uri',__PS_BASE_URI__.thnxblog::$ModuleName.'/views/img/');
+        $this->context->smarty->assign('thnxblog_css_uri',__PS_BASE_URI__.thnxblog::$ModuleName.'/views/css/');
+        $this->context->smarty->assign('thnxblog_js_uri',__PS_BASE_URI__.thnxblog::$ModuleName.'/views/js/');
         $template = "single.tpl";
         if(!empty($this->page_type)){
         	$post_format = (isset($this->blogpost['post_format']) && !empty($this->blogpost['post_format'])) ? "-".$this->blogpost['post_format'] : ""; 
