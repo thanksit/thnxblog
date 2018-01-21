@@ -528,7 +528,7 @@ class thnxblog extends Module
 		$tabpar_listobj->module = $this->name;
 		foreach($langs as $l)
 	    {
-	    	$tabpar_listobj->name[$l['id_lang']] = $this->l("thanks Blog");
+	    	$tabpar_listobj->name[$l['id_lang']] = $this->l("ThnxBlog");
 	    }
 	    if($tabpar_listobj->save()){
 	    	return (int)$tabpar_listobj->id;
