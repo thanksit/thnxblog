@@ -159,7 +159,7 @@ class thnxblog extends Module
 	public function UnRegister_Hooks()
 	{
         // $hook_idm = Hook::getIdByName("displayAdminAfterHeader");
-    	$this->unregisterHook((int)$hook_idm);
+    	// $this->unregisterHook((int)$hook_idm);
 		if(isset($this->all_hooks)){
 			foreach ($this->all_hooks as $hook) {
         		$hook_id = Hook::getIdByName($hook);
@@ -224,17 +224,16 @@ class thnxblog extends Module
     	$category_slug = (isset($categoryslug) && !empty($categoryslug)) ? $categoryslug : "category";
     	$tag_slug = (isset($tagslug) && !empty($tagslug)) ? $tagslug : "tag";
     	$single_slug = (isset($singleslug) && !empty($singleslug)) ? $singleslug : "post";
+    	$params = array(
+                        'fc' => 'module',
+                        'module' => 'thnxblog'
+                );
         $thnxblogroutes = array(
 	        	'thnxblog-thnxblog-module' => array(
 	        	    'controller' =>  'archive',
 	        	    'rule' => $main_slug.$postfix_slug,
 	        	    'keywords' => array(),
-	        	    'params' => array(
-	        	        'fc' => 'module',
-	        	        'module' => 'thnxblog',
-	        	        'subpage_type' => 'post',
-	        	        'page_type' => 'category',
-	        	    )
+	        	    'params' => $params
 	        	),
                 'thnxblog-archive-module' => array(
                     'controller' =>  'archive',
@@ -243,12 +242,7 @@ class thnxblog extends Module
                         'id'   =>   array('regexp' => '[0-9]+', 'param' => 'id'),
                         'rewrite'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'subpage_type' => 'post',
-	        	        'page_type' => 'category',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-archive-aftrid-module' => array(
                     'controller' =>  'archive',
@@ -257,12 +251,7 @@ class thnxblog extends Module
                         'id'   =>   array('regexp' => '[0-9]+', 'param' => 'id'),
                         'rewrite'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'subpage_type' => 'post',
-	        	        'page_type' => 'category',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-archive-wid-module' => array(
                     'controller' =>  'archive',
@@ -271,12 +260,7 @@ class thnxblog extends Module
                         'id'   =>   array('regexp' => '[0-9]+', 'param' => 'id'),
                         'rewrite'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'subpage_type' => 'post',
-	        	        'page_type' => 'category',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-tag-module' => array(
                     'controller' =>  'archive',
@@ -285,12 +269,7 @@ class thnxblog extends Module
                         'id'   =>   array('regexp' => '[0-9]+', 'param' => 'id'),
                         'rewrite'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'subpage_type' => 'post',
-	        	        'page_type' => 'tag',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-tag-aftrid-module' => array(
                     'controller' =>  'archive',
@@ -299,12 +278,7 @@ class thnxblog extends Module
                         'id'   =>   array('regexp' => '[0-9]+', 'param' => 'id'),
                         'rewrite'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'subpage_type' => 'post',
-	        	        'page_type' => 'tag',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-tag-wid-module' => array(
                     'controller' =>  'archive',
@@ -313,12 +287,7 @@ class thnxblog extends Module
                         'id'   =>   array('regexp' => '[0-9]+', 'param' => 'id'),
                         'rewrite'       =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'subpage_type' => 'post',
-	        	        'page_type' => 'tag',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-single-module' => array(
                     'controller' =>  'single',
@@ -327,11 +296,7 @@ class thnxblog extends Module
                         'id' =>   array('regexp' => '[0-9]+','param' => 'id'),
                         'rewrite' =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'page_type' => 'post',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-single-aftrid-module' => array(
                     'controller' =>  'single',
@@ -340,11 +305,7 @@ class thnxblog extends Module
                         'id' =>   array('regexp' => '[0-9]+','param' => 'id'),
                         'rewrite' =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'page_type' => 'post',
-                    )
+                    'params' => $params
                 ),
                 'thnxblog-single-wid-module' => array(
                     'controller' =>  'single',
@@ -353,11 +314,7 @@ class thnxblog extends Module
                         'id' =>   array('regexp' => '[0-9]+','param' => 'id'),
                         'rewrite' =>   array('regexp' => '[_a-zA-Z0-9-\pL]*','param' => 'rewrite'),
                     ),
-                    'params' => array(
-                        'fc' => 'module',
-                        'module' => 'thnxblog',
-	        	        'page_type' => 'post',
-                    )
+                    'params' => $params
                 ),
             );
 		return $thnxblogroutes;
@@ -444,9 +401,6 @@ class thnxblog extends Module
     	if(!isset($params['id']) && isset($params['rewrite'])){
     		$params['id'] = thnxpostsclass::get_the_id($params['rewrite']);
     	}
-    	if(!isset($params['page_type'])){
-    		$params['page_type'] = 'post';
-    	}
     	if($url_format == 'preid_seo_url'){
     		$rule = 'thnxblog-single-module';
     		return self::thnxBlogLink($rule,$params);
@@ -464,12 +418,6 @@ class thnxblog extends Module
     }
     public static function thnxBlogTagLink($params = array()){
     	$url_format = Configuration::get(self::$thnxblogshortname."url_format");
-    	if(!isset($params['page_type'])){
-    		$params['page_type'] = 'tag';
-    	}
-    	if(!isset($params['subpage_type'])){
-    		$params['subpage_type'] = 'post';
-    	}
     	if($url_format == 'preid_seo_url'){
     		$rule = 'thnxblog-tag-module';
     		return self::thnxBlogLink($rule,$params);
@@ -488,12 +436,6 @@ class thnxblog extends Module
     }
     public static function thnxBlogCategoryLink($params = array()){
         $url_format = Configuration::get(self::$thnxblogshortname."url_format");
-        if(!isset($params['page_type'])){
-    		$params['page_type'] = 'category';
-    	}
-    	if(!isset($params['subpage_type'])){
-    		$params['subpage_type'] = 'post';
-    	}
         if($url_format == 'preid_seo_url'){
         	$rule = 'thnxblog-archive-module';
         	return self::thnxBlogLink($rule,$params);
