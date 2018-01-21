@@ -9,22 +9,22 @@ if (!defined('thnxblog_uri')) {
 	define('thnxblog_uri', __PS_BASE_URI__.'modules/thnxblog/');
 }
 if (!defined('thnxblog_img_dir')) {
-	define('thnxblog_img_dir', _PS_MODULE_DIR_.'thnxblog/img/');
+	define('thnxblog_img_dir', _PS_MODULE_DIR_.'thnxblog/views/img/');
 }
 if (!defined('thnxblog_img_uri')) {
-	define('thnxblog_img_uri', __PS_BASE_URI__.'modules/thnxblog/img/');
+	define('thnxblog_img_uri', __PS_BASE_URI__.'modules/thnxblog/views/img/');
 }
 if (!defined('thnxblog_css_dir')) {
-	define('thnxblog_css_dir', _PS_MODULE_DIR_.'thnxblog/css/');
+	define('thnxblog_css_dir', _PS_MODULE_DIR_.'thnxblog/views/css/');
 }
 if (!defined('thnxblog_css_uri')) {
-	define('thnxblog_css_uri', __PS_BASE_URI__.'modules/thnxblog/css/');
+	define('thnxblog_css_uri', __PS_BASE_URI__.'modules/thnxblog/views/css/');
 }
 if (!defined('thnxblog_js_dir')) {
-	define('thnxblog_js_dir', _PS_MODULE_DIR_.'thnxblog/js/');
+	define('thnxblog_js_dir', _PS_MODULE_DIR_.'thnxblog/views/js/');
 }
 if (!defined('thnxblog_js_uri')) {
-	define('thnxblog_js_uri', __PS_BASE_URI__.'modules/thnxblog/js/');
+	define('thnxblog_js_uri', __PS_BASE_URI__.'modules/thnxblog/views/js/');
 }
 if (!defined('thnxblog_tpl_dir')) {
 	define('thnxblog_tpl_dir','thnxblog/views/templates/front/');
