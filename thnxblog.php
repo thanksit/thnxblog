@@ -75,8 +75,8 @@ class thnxblog extends Module
         $this->need_upgrade = true;
 		$this->controllers = array('archive','single');
 		parent::__construct();	
-		$this->displayName = $this->l('Platinum Theme Powerfull Prestashop Blog Module by thanksit.com');
-		$this->description = $this->l('thnxBlog Powerfull Prestashop Blog Module by thanksit.com');
+		$this->displayName = $this->l('Prestashop Blog Module by thanksit.com');
+		$this->description = $this->l('standrad, audio, video, gallery post format by default supported with blog module. Also this module has many awesome premium features. But all are free for single usage and commercial usage. For Contact : thanksitcom@gmail.com');
 		$this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
         if(!isset($this->context)){
 			$this->context = Context::getContext();
