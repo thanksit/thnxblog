@@ -172,8 +172,6 @@ class thnxpostsclass extends ObjectModel
     	$name = $posts['post_title'];
     	$params['id'] = $categories['id_thnxcategory'] ? $categories['id_thnxcategory'] : 0;
     	$params['rewrite'] = $categories['link_rewrite'] ? $categories['link_rewrite'] : '';
-    	$params['page_type'] = 'category';
-    	$params['subpage_type'] = $post_type ?  $post_type : 'post';
     	$link = thnxblog::thnxBlogCategoryLink($params);
     	$meta_title = Configuration::get(thnxblog::$thnxblogshortname."meta_title");
     	$meta_title = (isset($meta_title) ? $meta_title : "Blog");
@@ -402,10 +400,10 @@ class thnxpostsclass extends ObjectModel
        			$results[$i]['name'] = $rslt['name'];
        			if($tag == 'tag'){
        				$results[$i]['id_tag'] = $rslt['id_category'];
-       				$results[$i]['link'] = thnxblog::thnxBlogTagLink(array('id'=>$rslt['id_category'],'rewrite'=>$rslt['link_rewrite'],'page_type'=>'tag','subpage_type'=>'post'));
+       				$results[$i]['link'] = thnxblog::thnxBlogTagLink(array('id'=>$rslt['id_category'],'rewrite'=>$rslt['link_rewrite']));
        			}elseif($tag == 'category'){
        				$results[$i]['id_category'] = $rslt['id_category'];
-       				$results[$i]['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$rslt['id_category'],'rewrite'=>$rslt['link_rewrite'],'page_type'=>'category','subpage_type'=>'post'));
+       				$results[$i]['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$rslt['id_category'],'rewrite'=>$rslt['link_rewrite']));
        			}
        		$i++;
        		}
@@ -431,10 +429,10 @@ class thnxpostsclass extends ObjectModel
        			$results[$i]['name'] = $rslt['name'];
        			if($tag == 'tag'){
        				$results[$i]['id_tag'] = $rslt['id_thnxcategory'];
-       				$results[$i]['link'] = thnxblog::thnxBlogTagLink(array('id'=>$rslt['id_thnxcategory'],'rewrite'=>$rslt['link_rewrite'],'page_type'=>'tag','subpage_type'=>'post'));
+       				$results[$i]['link'] = thnxblog::thnxBlogTagLink(array('id'=>$rslt['id_thnxcategory'],'rewrite'=>$rslt['link_rewrite']));
        			}elseif($tag == 'category'){
        				$results[$i]['id_category'] = $rslt['id_thnxcategory'];
-       				$results[$i]['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$rslt['id_thnxcategory'],'rewrite'=>$rslt['link_rewrite'],'page_type'=>'category','subpage_type'=>'post'));
+       				$results[$i]['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$rslt['id_thnxcategory'],'rewrite'=>$rslt['link_rewrite']));
        			}
        		$i++;
        		}
@@ -509,7 +507,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['post_author_arr']['lastname'] = $post_author_arr->lastname;
           				$results[$i]['post_author_arr']['firstname'] = $post_author_arr->firstname;
           			}
-          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite'],'page_type'=>$post_type));
+          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite']));
           			$results[$i]['post_tags'] = self::GetPostTagsResults($qlvalue['id_thnxposts'],"tag");
           			if(isset($qlvalue['audio']) && !empty($qlvalue['audio'])){
           				$results[$i]['audio_lists'] = @explode(",",$qlvalue['audio']);
@@ -541,7 +539,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['category_default_arr']['name'] = @$category_default_arr->name[$id_lang];
           				$results[$i]['category_default_arr']['link_rewrite'] = @$category_default_arr->link_rewrite[$id_lang];
           				$results[$i]['category_default_arr']['title'] = @$category_default_arr->title[$id_lang];
-          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang],'page_type'=>'category','subpage_type'=>$post_type));
+          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang]));
           			}
           		}
           		$i++;
@@ -592,7 +590,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['post_author_arr']['lastname'] = $post_author_arr->lastname;
           				$results[$i]['post_author_arr']['firstname'] = $post_author_arr->firstname;
           			}
-          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite'],'page_type'=>$post_type));
+          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite']));
           			$results[$i]['post_tags'] = self::GetPostTagsResults($qlvalue['id_thnxposts'],"tag");
           			if(isset($qlvalue['audio']) && !empty($qlvalue['audio'])){
           				$results[$i]['audio_lists'] = @explode(",",$qlvalue['audio']);
@@ -624,7 +622,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['category_default_arr']['name'] = @$category_default_arr->name[$id_lang];
           				$results[$i]['category_default_arr']['link_rewrite'] = @$category_default_arr->link_rewrite[$id_lang];
           				$results[$i]['category_default_arr']['title'] = @$category_default_arr->title[$id_lang];
-          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang],'page_type'=>'category','subpage_type'=>$post_type));
+          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang]));
           			}
           		}
           		$i++;
@@ -675,7 +673,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['post_author_arr']['lastname'] = $post_author_arr->lastname;
           				$results[$i]['post_author_arr']['firstname'] = $post_author_arr->firstname;
           			}
-          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite'],'page_type'=>$post_type));
+          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite']));
           			$results[$i]['post_tags'] = self::GetPostTagsResults($qlvalue['id_thnxposts'],"tag");
           			if(isset($qlvalue['audio']) && !empty($qlvalue['audio'])){
           				$results[$i]['audio_lists'] = @explode(",",$qlvalue['audio']);
@@ -707,7 +705,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['category_default_arr']['name'] = @$category_default_arr->name[$id_lang];
           				$results[$i]['category_default_arr']['link_rewrite'] = @$category_default_arr->link_rewrite[$id_lang];
           				$results[$i]['category_default_arr']['title'] = @$category_default_arr->title[$id_lang];
-          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang],'page_type'=>'category','subpage_type'=>$post_type));
+          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang]));
           			}
           		}
           		$i++;
@@ -796,7 +794,7 @@ class thnxpostsclass extends ObjectModel
       					}
       				}
       			}
-       			$results['link'] = thnxblog::thnxBlogPostLink(array('id'=>$queryexec['id_thnxposts'],'rewrite'=>$queryexec['link_rewrite'],'page_type'=>$post_type));
+       			$results['link'] = thnxblog::thnxBlogPostLink(array('id'=>$queryexec['id_thnxposts'],'rewrite'=>$queryexec['link_rewrite']));
        			$results['post_tags'] = self::GetPostTagsResults($queryexec['id_thnxposts'],"tag");
        			if($qkey == 'category_default'){
        				$category_default_arr = new thnxcategoryclass((int)$qvalue);
@@ -804,7 +802,7 @@ class thnxpostsclass extends ObjectModel
        				$results['category_default_arr']['name'] = @$category_default_arr->name[$id_lang];
        				$results['category_default_arr']['title'] = @$category_default_arr->title[$id_lang];
        				$results['category_default_arr']['link_rewrite'] = @$category_default_arr->link_rewrite[$id_lang];
-       				$results['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang],'subpage_type'=>$post_type,'page_type'=>'category'));
+       				$results['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang]));
        			}
        		}
        }
@@ -860,7 +858,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['post_author_arr']['lastname'] = $post_author_arr->lastname;
           				$results[$i]['post_author_arr']['firstname'] = $post_author_arr->firstname;
           			}
-          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite'],'page_type'=>$post_type));
+          			$results[$i]['link'] = thnxblog::thnxBlogPostLink(array('id'=>$qlvalue['id_thnxposts'],'rewrite'=>$qlvalue['link_rewrite']));
           			$results[$i]['post_tags'] = self::GetPostTagsResults($qlvalue['id_thnxposts'],"tag");
           			if(isset($qlvalue['audio']) && !empty($qlvalue['audio'])){
           				$results[$i]['audio_lists'] = @explode(",",$qlvalue['audio']);
@@ -892,7 +890,7 @@ class thnxpostsclass extends ObjectModel
           				$results[$i]['category_default_arr']['name'] = @$category_default_arr->name[$id_lang];
           				$results[$i]['category_default_arr']['link_rewrite'] = @$category_default_arr->link_rewrite[$id_lang];
           				$results[$i]['category_default_arr']['title'] = @$category_default_arr->title[$id_lang];
-          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang],'page_type'=>'category','subpage_type'=>$post_type));
+          				$results[$i]['category_default_arr']['link'] = thnxblog::thnxBlogCategoryLink(array('id'=>$category_default_arr->id,'rewrite'=>$category_default_arr->link_rewrite[$id_lang]));
           			}
           		}
           		$i++;
