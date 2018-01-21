@@ -11,7 +11,7 @@ class thnxblogArchiveModuleFrontController extends thnxblogMainModuleFrontContro
 	{
         parent::init();
        	$this->rewrite = Tools::getValue('rewrite');
-       	$subpage_type = Tools::getValue('subpage_type');
+       	$subpage_type = $this->getSubPageType();
        	$p = Tools::getValue('page');
 		$this->p = isset($p) && !empty($p) ? $p : 1;
 		$id_identity = Tools::getValue('id');
@@ -185,14 +185,11 @@ class thnxblogArchiveModuleFrontController extends thnxblogMainModuleFrontContro
         $params = array();
         $params['id'] = $this->blogcategory->id_thnxcategory ? $this->blogcategory->id_thnxcategory : 0;
         $params['rewrite'] = (isset($this->blogcategory->link_rewrite[$id_lang]) && !empty($this->blogcategory->link_rewrite[$id_lang])) ? $this->blogcategory->link_rewrite[$id_lang] : 'category_blog_post';
-        $params['page_type'] = 'category';
-        $params['subpage_type'] = 'post';
 		$category_url = thnxblog::thnxBlogCategoryLink($params);
         $breadcrumb['links'][] = array(
             'title' => $category_name,
             'url' => $category_url,
         );
-
         return $breadcrumb;
     }
 }
