@@ -665,7 +665,7 @@ class thnxblog extends Module
         						$this->context->controller->registerStylesheet($css_file['key'], $theme_file_src , ['media' => $media, 'priority' => $priority]);
         					}
         				}else{
-        					$module_file_src = 'modules/'.$this->name.'/css/'.$css_file['src'];
+        					$module_file_src = 'modules/'.$this->name.'/views/css/'.$css_file['src'];
         					if(self::isEmptyFileContet($root_path.$module_file_src)){
         						$this->context->controller->registerStylesheet($css_file['key'], $module_file_src , ['media' => $media, 'priority' => $priority]);
         					}
@@ -699,7 +699,7 @@ class thnxblog extends Module
 	        					$this->context->controller->registerJavascript($js_file['key'], $theme_file_src , ['position' => $position, 'priority' => $priority]);
 	        				}
 	        			}else{
-		        			$module_file_src = 'modules/'.$this->name.'/js/'.$js_file['src'];
+		        			$module_file_src = 'modules/'.$this->name.'/views/js/'.$js_file['src'];
 	        				if(self::isEmptyFileContet($root_path.$module_file_src)){
 		        				$this->context->controller->registerJavascript($js_file['key'], $module_file_src , ['position' => $position, 'priority' => $priority]);
 	        				}
@@ -722,7 +722,7 @@ class thnxblog extends Module
     	$this->Register_Js();
     }
     public function GenerateImageThumbnail($select_image_type = 'all'){
-    	$dir = _PS_MODULE_DIR_.self::$ModuleName.'/img/';
+    	$dir = _PS_MODULE_DIR_.self::$ModuleName.'/views/img/';
     	$GetAllImageTypes = thnximagetypeclass::GetAllImageTypes();
     	if($select_image_type == 'all' || $select_image_type == 'category'){
 			// start category
@@ -916,7 +916,7 @@ class thnxblog extends Module
     public static function UploadMedia($name,$dir=NULL)
     {
     	if($dir == NULL){
-    		$dir = _PS_MODULE_DIR_.self::$ModuleName.'/img/';
+    		$dir = _PS_MODULE_DIR_.self::$ModuleName.'/views/img/';
     	}
 		$file_name = false;
 		if (isset($_FILES[$name]) && isset($_FILES[$name]['tmp_name']) && !empty($_FILES[$name]['tmp_name'])) {
@@ -946,7 +946,7 @@ class thnxblog extends Module
     public static function BulkUploadMedia($name,$dir=NULL)
     {
     	if($dir == NULL){
-    		$dir = _PS_MODULE_DIR_.self::$ModuleName.'/img/';
+    		$dir = _PS_MODULE_DIR_.self::$ModuleName.'/views/img/';
     	}
     	$results_imgs = array();
 		if (isset($_FILES[$name]) && isset($_FILES[$name]['tmp_name']) && !empty($_FILES[$name]['tmp_name'])) {
